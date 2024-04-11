@@ -41,4 +41,14 @@ public class Exercise1 {
 		preStatement.setString(1, customerName);
 		return preStatement.executeUpdate() > 0;
 	}
+	
+	public boolean question4_updateCustomer(int customerNumber) throws SQLException{
+		String sql = "update customers "
+				+ "set customerName = dev"
+				+ "where customerNumber = ?";
+		PreparedStatement preparedStatement = conn.prepareStatement(sql);
+		preparedStatement.setInt(1, customerNumber);
+		return preparedStatement.executeUpdate() > 0;
+	}
+	
 }
