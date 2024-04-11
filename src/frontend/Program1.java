@@ -13,5 +13,8 @@ public class Program1 {
 //		if(ex1.question4_updateCustomer(310)) {
 //			System.out.println("Updated success!");
 //		};
+		if(ex1.question5_deleteCustomer(310)) {
+			System.out.println("Deleted success!");
+		};
 	}
 }

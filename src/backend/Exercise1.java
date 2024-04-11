@@ -25,7 +25,8 @@ public class Exercise1 {
 	}
 	
 	public void question2_getInfo() throws SQLException {
-		String sql = "select customerNumber, customerName from customers";
+		String sql = "SELECT customerNumber, customerName "
+				+ "FROM customers";
 		Statement statement = conn.createStatement();
 		ResultSet resultSet = statement.executeQuery(sql);
 		while(resultSet.next()) {
@@ -36,19 +37,28 @@ public class Exercise1 {
 	}
 	
 	public boolean question3_addCustomer(String customerName) throws SQLException{
-		String sql = "insert into customers (customerName) value (?)";
+		String sql = "INSERT INTO customers (customerName) "
+				+ "VALUE (?)";
 		PreparedStatement preStatement = conn.prepareStatement(sql);
 		preStatement.setString(1, customerName);
 		return preStatement.executeUpdate() > 0;
 	}
 	
 	public boolean question4_updateCustomer(int customerNumber) throws SQLException{
-		String sql = "update customers "
-				+ "set customerName = dev"
-				+ "where customerNumber = ?";
+		String sql = "UPDATE customers "
+				+ "SET customerName = dev"
+				+ "WHERE customerNumber = ?";
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
 		preparedStatement.setInt(1, customerNumber);
 		return preparedStatement.executeUpdate() > 0;
 	}
 	
+	public boolean question5_deleteCustomer(int customerNumber) throws SQLException{
+		String sql = "DELETE FROM customers "
+				+ "WHERE customerNumber = ?";
+		PreparedStatement preparedStatement = conn.prepareStatement(sql);
+		preparedStatement.setInt(1, customerNumber);
+		return preparedStatement.executeUpdate() > 0;
+	}
+
 }
