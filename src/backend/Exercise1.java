@@ -2,6 +2,7 @@ package backend;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,5 +33,12 @@ public class Exercise1 {
 			System.out.println("CustomerName: " + resultSet.getString("customerName"));
 			System.out.println();
 		}
+	}
+	
+	public boolean question3_addCustomer(String customerName) throws SQLException{
+		String sql = "insert into customers (customerName) value (?)";
+		PreparedStatement preStatement = conn.prepareStatement(sql);
+		preStatement.setString(1, customerName);
+		return preStatement.executeUpdate() > 0;
 	}
 }
